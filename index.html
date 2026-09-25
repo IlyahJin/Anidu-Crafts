@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anidu Crafts - Digital Coloring Books & Interactive Studio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        sans: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        .font-fredoka {
+            font-family: 'Fredoka', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-400 selection:text-slate-900">
+
+    <header class="sticky top-0 z-50 bg-slate-900/60 backdrop-blur-md border-b border-white/10 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 to-rose-400 flex items-center justify-center text-white font-fredoka text-2xl font-bold shadow-md group-hover:scale-105 transition-transform">
+                    🎨
+                </div>
+                <div>
+                    <h1 class="font-fredoka text-2xl font-bold text-white leading-none">Anidu Crafts</h1>
+                    <p class="text-xs font-semibold text-amber-300 tracking-wider uppercase mt-0.5">Digital Coloring Books</p>
+                </div>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md mx-6">
+                <div class="relative w-full">
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Search books by title, animals, anime, locations..." 
+                        class="w-full pl-5 pr-4 py-2.5 bg-white/10 text-white rounded-full border border-white/20 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm font-medium placeholder:text-slate-300 shadow-inner"
+                    />
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button 
+                    id="openCartBtn"
+                    class="relative p-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-md transition flex items-center justify-center"
+                >
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartCountBadge" class="absolute -top-2 -right-2 bg-rose-500 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-slate-900 hidden">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
+        <div class="max-w-3xl mx-auto p-8 sm:p-10 space-y-6">
+            <span class="px-4 py-1.5 bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-bold rounded-full uppercase tracking-wider inline-block shadow-sm">
+                ✨ Instant Printable & Digital PDFs
+            </span>
+            <h2 class="font-fredoka text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-md">
+                Color Your World with <span class="text-amber-400">Anidu Crafts</span>
+            </h2>
+            <p class="text-base sm:text-lg text-slate-100 font-medium leading-relaxed drop-shadow">
+                Explore our handcrafted printable digital coloring collections. Unwind with relaxing mandalas, anime adventures, scenic locations, and fun character pages!
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                <a href="#catalog-section" class="px-6 py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-amber-500/30 transition transform hover:-translate-y-0.5">
+                    Browse Books
+                </a>
+                <a href="#demo-studio" class="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl shadow-md border border-white/20 transition backdrop-blur-sm">
+                    Try Digital Studio 🎨
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main id="catalog-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
+        <div class="bg-slate-900/60 backdrop-blur-md p-6 rounded-3xl border border-white/10 shadow-sm space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <h3 class="font-fredoka text-2xl font-bold text-white">Coloring Book Catalog</h3>
+                    <p class="text-xs sm:text-sm text-slate-300">Instant high-resolution PDF download after secure purchase</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2">
+                    <button data-filter="all" class="audience-filter-btn px-4 py-2 rounded-xl text-sm font-bold transition bg-amber-500 text-white shadow">
+                        All Books
+                    </button>
+                    <button data-filter="kids" class="audience-filter-btn px-4 py-2 rounded-xl text-sm font-bold transition bg-white/10 hover:bg-white/20 text-white border border-white/15">
+                        Kids ($4.99 USD)
+                    </button>
+                    <button data-filter="adults" class="audience-filter-btn px-4 py-2 rounded-xl text-sm font-bold transition bg-white/10 hover:bg-white/20 text-white border border-white/15">
+                        Adults ($5.99 USD)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Theme filter pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 pt-2 text-xs font-semibold text-slate-300 border-t border-white/10">
+                <span class="text-slate-400 uppercase tracking-wider text-[10px]">Themes:</span>
+                <button onclick="filterByTheme('all', event)" class="theme-pill px-3 py-1 rounded-lg bg-amber-500/30 text-amber-300 border border-amber-400/30 transition">All Themes</button>
+                <button onclick="filterByTheme('animals', event)" class="theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition">Animals</button>
+                <button onclick="filterByTheme('fantasy', event)" class="theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition">Fantasy</button>
+                <button onclick="filterByTheme('mandala', event)" class="theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition">Mandala</button>
+                <button onclick="filterByTheme('patterns', event)" class="theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition">Patterns</button>
+                <button onclick="filterByTheme('locations', event)" class="theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition">Locations</button>
+                <button onclick="filterByTheme('anime', event)" class="theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition">Anime / Cartoon</button>
+                <button onclick="filterByTheme('people', event)" class="theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition">People</button>
+            </div>
+        </div>
+
+        <div id="booksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Populated via JavaScript -->
+        </div>
+    </main>
+
+    <div id="bookPreviewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden overflow-y-auto">
+        <div class="bg-slate-900 border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-6 relative text-white my-8">
+            <button id="closePreviewModalBtn" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2 rounded-xl hover:bg-white/10 transition">
+                ✕
+            </button>
+
+            <div id="previewModalContent" class="space-y-6">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <section id="demo-studio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div class="bg-slate-900/60 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/10 shadow-lg space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <span class="px-3 py-1 bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-bold rounded-full uppercase tracking-wider">Try Before You Buy</span>
+                    <h3 class="font-fredoka text-3xl font-bold text-white mt-1">Interactive Digital Canvas</h3>
+                    <p class="text-sm text-slate-300">Color this sample page directly on your screen with calibrated accuracy or download your creation!</p>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-2">
+                    <button id="toolFillBtn" class="px-4 py-2 rounded-xl text-sm font-bold shadow transition flex items-center gap-1.5 bg-amber-500 text-white">
+                        <i class="fa-solid fa-fill-drip"></i> Paint Bucket
+                    </button>
+                    <button id="toolBrushBtn" class="px-4 py-2 rounded-xl text-sm font-bold shadow transition flex items-center gap-1.5 bg-white/10 text-white hover:bg-white/20 border border-white/20">
+                        <i class="fa-solid fa-paintbrush"></i> Brush
+                    </button>
+                    <button id="clearCanvasBtn" class="px-3 py-2 bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 border border-rose-500/30 rounded-xl text-sm font-bold transition">
+                        <i class="fa-solid fa-rotate-right"></i> Reset
+                    </button>
+                    <button id="downloadCanvasBtn" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-bold shadow transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-download"></i> Save Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 p-3 bg-white/5 rounded-2xl border border-white/10">
+                <span class="text-xs font-bold text-slate-300 mr-2">Color Palette:</span>
+                <button onclick="setStudioColor('#f87171')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#f87171]"></button>
+                <button onclick="setStudioColor('#fb923c')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#fb923c]"></button>
+                <button onclick="setStudioColor('#fbbf24')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#fbbf24] ring-4 ring-amber-400" id="defaultSwatch"></button>
+                <button onclick="setStudioColor('#4ade80')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#4ade80]"></button>
+                <button onclick="setStudioColor('#38bdf8')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#38bdf8]"></button>
+                <button onclick="setStudioColor('#818cf8')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#818cf8]"></button>
+                <button onclick="setStudioColor('#c084fc')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#c084fc]"></button>
+                <button onclick="setStudioColor('#f472b6')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#f472b6]"></button>
+                <button onclick="setStudioColor('#1e293b')" class="palette-swatch w-8 h-8 rounded-full border-2 border-white shadow hover:scale-110 transition bg-[#1e293b]"></button>
+                
+                <label class="cursor-pointer ml-2 relative flex items-center gap-1 bg-white/10 px-2.5 py-1 rounded-xl border border-white/20 text-xs font-bold text-white hover:bg-white/20 shadow-sm">
+                    🎨 Custom
+                    <input type="color" id="customColorPicker" value="#fbbf24" class="absolute opacity-0 w-full h-full left-0 top-0 cursor-pointer" onchange="setStudioColor(this.value)" />
+                </label>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="relative w-full aspect-square sm:aspect-[16/9] max-h-[500px] bg-white rounded-2xl border-2 border-dashed border-white/30 overflow-hidden flex items-center justify-center shadow-inner">
+                <canvas id="paintCanvas" class="cursor-crosshair w-full h-full object-contain touch-none"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="cartBackdrop" class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-slate-900 shadow-2xl flex flex-col border-l border-white/10 text-white">
+                <div class="p-6 bg-slate-950/80 border-b border-white/10 flex items-center justify-between">
+                    <h3 class="font-fredoka text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping text-amber-400"></i> Shopping Cart
+                    </h3>
+                    <button id="closeCartBtn" class="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-white/10 transition">
+                        ✕
+                    </button>
+                </div>
+
+                <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-white/10">
+                    <!-- Populated via JS -->
+                </div>
+
+                <div class="p-6 bg-slate-950/80 border-t border-white/10 space-y-4">
+                    <div class="flex justify-between items-center text-slate-300">
+                        <span class="font-medium text-sm">Subtotal</span>
+                        <span id="cartSubtotal" class="font-bold text-white">$0.00 USD</span>
+                    </div>
+                    <div class="flex justify-between items-center text-lg font-black text-white">
+                        <span>Total Due</span>
+                        <span id="cartTotal" class="text-amber-400">$0.00 USD</span>
+                    </div>
+
+                    <button 
+                        id="checkoutBtn"
+                        class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-amber-500/20 transition"
+                    >
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden">
+        <div class="bg-slate-900 border border-white/20 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6 relative text-white">
+            <button id="closeCheckoutBtn" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+                ✕
+            </button>
+
+            <div class="text-center space-y-1">
+                <h3 class="font-fredoka text-2xl font-bold text-white">Complete Purchase</h3>
+                <p class="text-xs text-slate-300">Instant PDF download links provided after secure payment</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 bg-white/10 p-1.5 rounded-2xl border border-white/15">
+                <button id="tabCardBtn" class="py-2 text-xs font-bold rounded-xl transition bg-amber-500 text-white shadow">
+                    💳 Card (Visa / MC)
+                </button>
+                <button id="tabPaypalBtn" class="py-2 text-xs font-bold rounded-xl transition text-slate-300 hover:text-white">
+                    🅿️ PayPal Business
+                </button>
+            </div>
+
+            <div id="cardPaymentForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Email Address</label>
+                    <input type="email" required placeholder="yourname@example.com" class="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder:text-slate-400" />
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Card Number</label>
+                    <input type="text" required placeholder="4000 0000 0000 0000" class="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder:text-slate-400" />
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Expiry Date</label>
+                        <input type="text" placeholder="MM/YY" required class="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder:text-slate-400" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">CVC / CVV</label>
+                        <input type="text" placeholder="123" required maxLength="4" class="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder:text-slate-400" />
+                    </div>
+                </div>
+                <button id="payCardSubmitBtn" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-lg transition">
+                    Pay Now & Download
+                </button>
+            </div>
+
+            <div id="paypalPaymentSection" class="space-y-4 text-center hidden py-4">
+                <p class="text-xs text-slate-300">Connect securely to your verified PayPal Business account to accept Visa, Mastercard, and PayPal balances:</p>
+                <button id="payPaypalBtn" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow transition">
+                    Pay with PayPal Express
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="creatorModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden overflow-y-auto">
+        <div class="bg-slate-900 border border-white/20 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6 relative text-white my-8">
+            <button id="closeCreatorBtn" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+                ✕
+            </button>
+
+            <div id="creatorLoginView" class="space-y-6 text-center py-2">
+                <div class="w-16 h-16 rounded-3xl bg-amber-500/20 text-amber-400 border border-amber-400/30 flex items-center justify-center mx-auto text-2xl font-bold shadow-inner">
+                    🔒
+                </div>
+                <div>
+                    <h3 class="font-fredoka text-2xl font-bold text-white">Creator Portal</h3>
+                    <p class="text-xs text-slate-300 mt-1">Enter creator password to access dashboard</p>
+                </div>
+                <div class="space-y-3 text-left">
+                    <input 
+                        type="password" 
+                        id="creatorPasswordInput" 
+                        placeholder="Enter password..." 
+                        class="w-full px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder:text-slate-400"
+                    />
+                    <button id="loginCreatorSubmitBtn" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow transition text-sm">
+                        Login to Dashboard
+                    </button>
+                </div>
+            </div>
+
+            <div id="creatorDashboardView" class="space-y-6 hidden">
+                <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                    <div>
+                        <h3 class="font-fredoka text-xl font-bold text-white">Creator Dashboard</h3>
+                        <p class="text-xs text-slate-300">Publish new book and upload multiple sample files</p>
+                    </div>
+                    <button id="logoutCreatorBtn" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl transition">
+                        Log Out
+                    </button>
+                </div>
+
+                <div class="space-y-3">
+                    <input type="text" id="newBookTitle" placeholder="Book Title (e.g., Tokyo Streets)" class="w-full px-3 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none placeholder:text-slate-400" />
+                    
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Audience & Price</label>
+                            <select id="newBookAudience" class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-white/20 text-white text-sm focus:outline-none">
+                                <option value="kids">Children ($4.99)</option>
+                                <option value="adults">Adults ($5.99)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-300 mb-1">Theme</label>
+                            <select id="newBookTheme" class="w-full px-3 py-2 rounded-xl bg-slate-800 border border-white/20 text-white text-sm focus:outline-none">
+                                <option value="animals">Animals</option>
+                                <option value="fantasy">Fantasy</option>
+                                <option value="mandala">Mandala</option>
+                                <option value="patterns">Patterns</option>
+                                <option value="locations">Locations</option>
+                                <option value="anime">Anime / Cartoon</option>
+                                <option value="people">People</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Multi-File Upload -->
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 mb-1">Upload Multiple Sample / Cover Files (PDF or Images)</label>
+                        <input type="file" id="newBookFiles" multiple accept="image/*,application/pdf" class="w-full text-xs text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-white hover:file:bg-amber-600 file:cursor-pointer bg-white/10 rounded-xl border border-white/20" />
+                        <span id="selectedFilesCount" class="text-[10px] text-amber-300 font-semibold mt-1 block">No files selected</span>
+                    </div>
+
+                    <textarea id="newBookDesc" rows="2" placeholder="Brief description..." class="w-full px-3 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none placeholder:text-slate-400"></textarea>
+                    
+                    <button id="publishNewBookBtn" class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-sm shadow transition">
+                        Publish Book to Store
+                    </button>
+                </div>
+
+                <!-- Change Password Section -->
+                <div class="pt-4 border-t border-white/10 space-y-3">
+                    <h4 class="font-fredoka text-sm font-bold text-white">Change Creator Password</h4>
+                    <div class="space-y-2">
+                        <input type="password" id="currentPassInput" placeholder="Current Password" class="w-full px-3 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none placeholder:text-slate-400" />
+                        <input type="password" id="newPassInput" placeholder="New Password" class="w-full px-3 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none placeholder:text-slate-400" />
+                        <button id="changePasswordBtn" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-400/30 font-bold rounded-xl text-xs shadow transition">
+                            Update Password
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-white/10 space-y-3">
+                    <h4 class="font-fredoka text-sm font-bold text-white">Manage / Delete Books</h4>
+                    <div id="creatorBooksList" class="max-h-48 overflow-y-auto space-y-2 pr-1 divide-y divide-white/10">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-[9999] flex flex-col gap-2"></div>
+
+    <footer class="mt-auto bg-slate-950/80 backdrop-blur-md border-t border-white/10 text-slate-400 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>
+                <span class="font-fredoka font-bold text-xl text-white">Anidu Crafts</span>
+                <p class="text-xs text-slate-400 mt-0.5">High quality printable & digital coloring books for all ages.</p>
+            </div>
+            <div class="flex items-center gap-6 flex-wrap justify-center">
+                <span class="text-xs text-slate-400">
+                    &copy; 2026 Anidu Crafts. Secure PayPal & Card Processing.
+                </span>
+                <button 
+                    id="openCreatorBtn"
+                    class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition flex items-center gap-2 border border-white/20 shadow-md group"
+                >
+                    <i class="fa-solid fa-gear text-amber-400 group-hover:rotate-90 transition-transform"></i>
+                    <span>Creator Portal</span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let books = [
+            {
+                id: 'b1',
+                title: 'Cute Woodland Animals',
+                audience: 'kids',
+                theme: 'animals',
+                price: 4.99,
+                pages: 35,
+                image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80',
+                description: 'Friendly woodland creatures, adorable bears, bunnies, and foxes with bold lines.',
+                samplePages: [
+                    'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80'
+                ]
+            },
+            {
+                id: 'b2',
+                title: 'Sacred Geometric Mandalas',
+                audience: 'adults',
+                theme: 'mandala',
+                price: 5.99,
+                pages: 50,
+                image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80',
+                description: 'Intricate circular mandala patterns designed for stress relief and mindful relaxation.',
+                samplePages: [
+                    'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80'
+                ]
+            },
+            {
+                id: 'b3',
+                title: 'Enchanted Dragon & Fairies',
+                audience: 'kids',
+                theme: 'fantasy',
+                price: 4.99,
+                pages: 40,
+                image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
+                description: 'Magical dragons, fairy castles, and mystical creatures ready for young colorists.',
+                samplePages: [
+                    'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80'
+                ]
+            },
+            {
+                id: 'b4',
+                title: 'Floral Botanical Bliss',
+                audience: 'adults',
+                theme: 'patterns',
+                price: 5.99,
+                pages: 45,
+                image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80',
+                description: 'Detailed garden flowers, botanical bouquets, and organic leaf patterns.',
+                samplePages: [
+                    'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80'
+                ]
+            },
+            {
+                id: 'b5',
+                title: 'Wonders of World Architecture',
+                audience: 'adults',
+                theme: 'locations',
+                price: 5.99,
+                pages: 40,
+                image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80',
+                description: 'Explore scenic cityscapes, historical European streets, and iconic landmark skylines.',
+                samplePages: [
+                    'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'
+                ]
+            },
+            {
+                id: 'b6',
+                title: 'Chibi Anime Heroes & Mecha',
+                audience: 'kids',
+                theme: 'anime',
+                price: 4.99,
+                pages: 35,
+                image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80',
+                description: 'Adorable anime characters, magical girls, and cute cartoon robots.',
+                samplePages: [
+                    'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80'
+                ]
+            },
+            {
+                id: 'b7',
+                title: 'Portraits of Elegance',
+                audience: 'adults',
+                theme: 'people',
+                price: 5.99,
+                pages: 42,
+                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+                description: 'Expressive fashion portraits, cultural attire, and detailed human line drawings.',
+                samplePages: [
+                    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80'
+                ]
+            }
+        ];
+
+        let cart = [];
+        let currentAudienceFilter = 'all';
+        let currentThemeFilter = 'all';
+        let searchQuery = '';
+        let creatorPassword = '1234';
+
+        // Studio state
+        let studioColor = '#fbbf24';
+        let studioTool = 'fill';
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = `${type === 'success' ? 'bg-emerald-600' : 'bg-amber-600'} text-white px-4 py-3 rounded-2xl shadow-xl font-medium text-sm transition-all duration-300`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        window.filterByTheme = function(theme, event) {
+            currentThemeFilter = theme;
+            document.querySelectorAll('.theme-pill').forEach(btn => {
+                btn.className = 'theme-pill px-3 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white transition';
+            });
+            if (event && event.target) {
+                event.target.className = 'theme-pill px-3 py-1 rounded-lg bg-amber-500/30 text-amber-300 border border-amber-400/30 transition';
+            }
+            renderBooks();
+        };
+
+        function renderBooks() {
+            const grid = document.getElementById('booksGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = books.filter(b => {
+                const matchAudience = currentAudienceFilter === 'all' || b.audience === currentAudienceFilter;
+                const matchTheme = currentThemeFilter === 'all' || b.theme === currentThemeFilter;
+                const matchSearch = b.title.toLowerCase().includes(searchQuery.toLowerCase()) || b.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchAudience && matchTheme && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full bg-slate-900/60 p-12 text-center rounded-3xl border border-white/10">
+                        <span class="text-4xl block mb-2">📖</span>
+                        <h4 class="font-fredoka font-bold text-lg text-white">No Coloring Books Found</h4>
+                        <p class="text-xs text-slate-300 mt-1">Try switching filters or adjusting your search term.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(book => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900/60 backdrop-blur-md rounded-3xl border border-white/10 shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col group cursor-pointer';
+                card.onclick = (e) => {
+                    if (e.target.closest('button')) return;
+                    openBookPreview(book.id);
+                };
+                card.innerHTML = `
+                    <div class="relative aspect-[4/3] overflow-hidden bg-slate-950">
+                        <img src="${book.image}" alt="${book.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80'" />
+                        <span class="absolute top-3 left-3 px-3 py-1 bg-slate-950/80 text-white text-[10px] font-bold uppercase rounded-full tracking-wider border border-white/10">
+                            ${book.audience === 'kids' ? 'Children' : 'Adults'}
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-1">
+                            <h4 class="font-fredoka font-bold text-lg text-white leading-snug group-hover:text-amber-400 transition">${book.title}</h4>
+                            <p class="text-xs text-slate-300 line-clamp-2">${book.description}</p>
+                            <span class="text-[11px] font-semibold text-slate-400 block pt-1">📄 ${book.pages} Printable Pages</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-white/10">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block uppercase font-bold">Price</span>
+                                <span class="text-xl font-black text-white">$${book.price.toFixed(2)} <span class="text-xs font-bold text-slate-400">USD</span></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="openBookPreview('${book.id}')" class="px-3 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl transition border border-white/20">
+                                    Preview
+                                </button>
+                                <button onclick="addToCart('${book.id}')" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow transition">
+                                    🛒 Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        window.openBookPreview = function(id) {
+            const book = books.find(b => b.id === id);
+            if (!book) return;
+
+            const modal = document.getElementById('bookPreviewModal');
+            const content = document.getElementById('previewModalContent');
+            if (!modal || !content) return;
+
+            const sampleImages = book.samplePages && book.samplePages.length > 0 ? book.samplePages : [book.image, book.image];
+
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-6 items-start">
+                    <div class="w-full md:w-1/2 rounded-2xl overflow-hidden aspect-[4/3] bg-slate-950 border border-white/10 shadow-inner">
+                        <img src="${book.image}" alt="${book.title}" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div>
+                            <span class="px-3 py-1 bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] font-bold rounded-full uppercase tracking-wider inline-block mb-2">
+                                ${book.audience === 'kids' ? 'Children Coloring Book' : 'Adults Mindfulness Book'}
+                            </span>
+                            <h3 class="font-fredoka text-2xl font-bold text-white">${book.title}</h3>
+                            <p class="text-xs text-amber-400 font-semibold mt-1">Theme: <span class="capitalize">${book.theme}</span></p>
+                        </div>
+                        <p class="text-sm text-slate-300 leading-relaxed">${book.description}</p>
+                        <div class="bg-white/5 p-3 rounded-2xl border border-white/10 space-y-1">
+                            <div class="flex justify-between text-xs text-slate-300">
+                                <span>Format:</span>
+                                <span class="font-bold text-white">Instant Printable PDF</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-300">
+                                <span>Page Count:</span>
+                                <span class="font-bold text-white">${book.pages} High-Res Pages</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-300">
+                                <span>Instant Download:</span>
+                                <span class="font-bold text-emerald-400">Available Immediately</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block uppercase font-bold">Total Price</span>
+                                <span class="text-2xl font-black text-white">$${book.price.toFixed(2)} <span class="text-xs font-bold text-slate-400">USD</span></span>
+                            </div>
+                            <button onclick="addToCart('${book.id}'); closeBookPreview();" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-lg shadow-amber-500/20 transition text-sm">
+                                🛒 Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/10 space-y-3">
+                    <h4 class="font-fredoka text-base font-bold text-white flex items-center gap-2">
+                        <span>📖</span> Sample Pages Included (${sampleImages.length} files)
+                    </h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        ${sampleImages.map((img, idx) => `
+                            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-white/10 shadow group">
+                                <img src="${img}" alt="Sample ${idx+1}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                                <span class="absolute bottom-2 left-2 px-2 py-0.5 bg-slate-950/80 text-[10px] font-bold rounded-lg text-slate-200 border border-white/10">File ${idx+1}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        };
+
+        window.closeBookPreview = function() {
+            const modal = document.getElementById('bookPreviewModal');
+            if (modal) modal.classList.add('hidden');
+        };
+
+        const closePreviewModalBtn = document.getElementById('closePreviewModalBtn');
+        if (closePreviewModalBtn) {
+            closePreviewModalBtn.addEventListener('click', closeBookPreview);
+        }
+
+        const bookPreviewModal = document.getElementById('bookPreviewModal');
+        if (bookPreviewModal) {
+            bookPreviewModal.addEventListener('click', (e) => {
+                if (e.target === bookPreviewModal) closeBookPreview();
+            });
+        }
+
+        window.addToCart = function(id) {
+            const book = books.find(b => b.id === id);
+            if (!book) return;
+            if (cart.some(item => item.id === id)) {
+                showToast(`"${book.title}" is already in your cart.`, 'warning');
+            } else {
+                cart.push(book);
+                showToast(`Added "${book.title}" to cart!`, 'success');
+                updateCartUI();
+            }
+        };
+
+        window.deleteBook = function(id) {
+            const bookIndex = books.findIndex(b => b.id === id);
+            if (bookIndex !== -1) {
+                const bookTitle = books[bookIndex].title;
+                books.splice(bookIndex, 1);
+                cart = cart.filter(item => item.id !== id);
+                updateCartUI();
+                renderBooks();
+                renderCreatorBooksList();
+                showToast(`Deleted "${bookTitle}" from store.`, 'warning');
+            }
+        };
+
+        function renderCreatorBooksList() {
+            const container = document.getElementById('creatorBooksList');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (books.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 py-2 text-center">No books available in catalog.</p>`;
+                return;
+            }
+
+            books.forEach(book => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-between pt-2 text-xs';
+                row.innerHTML = `
+                    <div class="truncate pr-2">
+                        <span class="font-bold text-white">${book.title}</span>
+                        <span class="text-[10px] text-slate-400 block">${book.audience} • ${book.samplePages ? book.samplePages.length : 1} files • $${book.price.toFixed(2)}</span>
+                    </div>
+                    <button onclick="deleteBook('${book.id}')" class="px-2.5 py-1 bg-rose-600/30 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/30 rounded-lg font-bold transition flex-shrink-0">
+                        Delete
+                    </button>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        window.removeFromCart = function(id) {
+            cart = cart.filter(item => item.id !== id);
+            showToast('Item removed from cart.', 'warning');
+            updateCartUI();
+        };
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartCountBadge');
+            if (!badge) return;
+            if (cart.length > 0) {
+                badge.textContent = cart.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            const container = document.getElementById('cartItemsContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 space-y-2">
+                        <span class="text-4xl">🛒</span>
+                        <p class="text-sm font-bold text-slate-300">Your cart is currently empty</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'flex items-center justify-between py-3';
+                    row.innerHTML = `
+                        <div>
+                            <h5 class="font-bold text-sm text-white">${item.title}</h5>
+                            <span class="text-xs text-slate-400">${item.audience === 'kids' ? 'Children' : 'Adults'} PDF (${item.samplePages ? item.samplePages.length : 1} files)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-sm text-white">$${item.price.toFixed(2)}</span>
+                            <button onclick="removeFromCart('${item.id}')" class="text-slate-400 hover:text-rose-400 transition">🗑️</button>
+                        </div>
+                    `;
+                    container.appendChild(row);
+                });
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const subtotalElem = document.getElementById('cartSubtotal');
+            const totalElem = document.getElementById('cartTotal');
+            if (subtotalElem) subtotalElem.textContent = `$${subtotal.toFixed(2)} USD`;
+            if (totalElem) totalElem.textContent = `$${subtotal.toFixed(2)} USD`;
+        }
+
+        const canvas = document.getElementById('paintCanvas');
+        let ctx = null;
+        if (canvas) {
+            ctx = canvas.getContext('2d', { willReadFrequently: true });
+        }
+
+        function initCanvas() {
+            if (!canvas || !ctx) return;
+            canvas.width = 800;
+            canvas.height = 500;
+            drawSampleOutline();
+        }
+
+        function drawSampleOutline() {
+            if (!canvas || !ctx) return;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 6;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.stroke();
+
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * Math.PI) / 4;
+                const px = cx + Math.cos(angle) * 130;
+                const py = cy + Math.sin(angle) * 130;
+                ctx.beginPath();
+                ctx.arc(px, py, 55, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            ctx.strokeRect(35, 35, canvas.width - 70, canvas.height - 70);
+        }
+
+        function getCanvasCoordinates(e) {
+            if (!canvas) return { x: 0, y: 0 };
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            
+            return {
+                x: Math.floor((clientX - rect.left) * scaleX),
+                y: Math.floor((clientY - rect.top) * scaleY)
+            };
+        }
+
+        function handlePointerDown(e) {
+            e.preventDefault();
+            const pos = getCanvasCoordinates(e);
+            
+            if (studioTool === 'fill') {
+                floodFill(pos.x, pos.y, studioColor);
+            } else {
+                isDrawing = true;
+                lastX = pos.x;
+                lastY = pos.y;
+                if (!ctx) return;
+                ctx.strokeStyle = studioColor;
+                ctx.lineWidth = 18;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(lastX, lastY);
+                ctx.stroke();
+            }
+        }
+
+        function handlePointerMove(e) {
+            if (!isDrawing || studioTool !== 'brush' || !ctx) return;
+            e.preventDefault();
+            const pos = getCanvasCoordinates(e);
+
+            ctx.strokeStyle = studioColor;
+            ctx.lineWidth = 18;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+
+        function handlePointerUp() {
+            isDrawing = false;
+        }
+
+        function floodFill(startX, startY, fillColorHex) {
+            if (!canvas || !ctx) return;
+            if (startX < 0 || startX >= canvas.width || startY < 0 || startY >= canvas.height) return;
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imgData.data;
+            const startPos = (startY * canvas.width + startX) * 4;
+            const startR = data[startPos];
+            const startG = data[startPos + 1];
+            const startB = data[startPos + 2];
+
+            const fillR = parseInt(fillColorHex.slice(1, 3), 16);
+            const fillG = parseInt(fillColorHex.slice(3, 5), 16);
+            const fillB = parseInt(fillColorHex.slice(5, 7), 16);
+
+            if ((startR < 50 && startG < 50 && startB < 50) || 
+                (startR === fillR && startG === fillG && startB === fillB)) {
+                return;
+            }
+
+            const queue = [[startX, startY]];
+            const width = canvas.width;
+            const height = canvas.height;
+            const visited = new Uint8Array(width * height);
+
+            while (queue.length > 0) {
+                const [x, y] = queue.pop();
+                const idx = y * width + x;
+
+                if (x < 0 || x >= width || y < 0 || y >= height) continue;
+                if (visited[idx]) continue;
+
+                const pIdx = (y * width + x) * 4;
+                const r = data[pIdx];
+                const g = data[pIdx + 1];
+                const b = data[pIdx + 2];
+
+                if (Math.abs(r - startR) < 40 && Math.abs(g - startG) < 40 && Math.abs(b - startB) < 40) {
+                    data[pIdx] = fillR;
+                    data[pIdx + 1] = fillG;
+                    data[pIdx + 2] = fillB;
+                    visited[idx] = 1;
+
+                    queue.push([x + 1, y]);
+                    queue.push([x - 1, y]);
+                    queue.push([x, y + 1]);
+                    queue.push([x, y - 1]);
+                }
+            }
+            ctx.putImageData(imgData, 0, 0);
+        }
+
+        window.setStudioColor = function(color) {
+            studioColor = color;
+            const customPicker = document.getElementById('customColorPicker');
+            if (customPicker) customPicker.value = color;
+        };
+
+        document.querySelectorAll('.audience-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.audience-filter-btn').forEach(b => {
+                    b.className = 'audience-filter-btn px-4 py-2 rounded-xl text-sm font-bold transition bg-white/10 hover:bg-white/20 text-white border border-white/15';
+                });
+                btn.className = 'audience-filter-btn px-4 py-2 rounded-xl text-sm font-bold transition bg-amber-500 text-white shadow';
+                currentAudienceFilter = btn.getAttribute('data-filter');
+                renderBooks();
+            });
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                renderBooks();
+            });
+        }
+
+        const toolFillBtn = document.getElementById('toolFillBtn');
+        const toolBrushBtn = document.getElementById('toolBrushBtn');
+        if (toolFillBtn && toolBrushBtn) {
+            toolFillBtn.addEventListener('click', () => {
+                studioTool = 'fill';
+                toolFillBtn.className = 'px-4 py-2 rounded-xl text-sm font-bold shadow transition flex items-center gap-1.5 bg-amber-500 text-white';
+                toolBrushBtn.className = 'px-4 py-2 rounded-xl text-sm font-bold shadow transition flex items-center gap-1.5 bg-white/10 text-white hover:bg-white/20 border border-white/20';
+                showToast('Paint Bucket tool selected', 'success');
+            });
+
+            toolBrushBtn.addEventListener('click', () => {
+                studioTool = 'brush';
+                toolBrushBtn.className = 'px-4 py-2 rounded-xl text-sm font-bold shadow transition flex items-center gap-1.5 bg-amber-500 text-white';
+                toolFillBtn.className = 'px-4 py-2 rounded-xl text-sm font-bold shadow transition flex items-center gap-1.5 bg-white/10 text-white hover:bg-white/20 border border-white/20';
+                showToast('Brush tool selected', 'success');
+            });
+        }
+
+        const clearCanvasBtn = document.getElementById('clearCanvasBtn');
+        if (clearCanvasBtn) {
+            clearCanvasBtn.addEventListener('click', () => {
+                drawSampleOutline();
+                showToast('Canvas reset successfully', 'success');
+            });
+        }
+
+        const downloadCanvasBtn = document.getElementById('downloadCanvasBtn');
+        if (downloadCanvasBtn && canvas) {
+            downloadCanvasBtn.addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.download = 'anidu-crafts-colored.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                showToast('Artwork downloaded!', 'success');
+            });
+        }
+
+        if (canvas) {
+            canvas.addEventListener('mousedown', handlePointerDown);
+            canvas.addEventListener('mousemove', handlePointerMove);
+            window.addEventListener('mouseup', handlePointerUp);
+
+            canvas.addEventListener('touchstart', handlePointerDown, { passive: false });
+            canvas.addEventListener('touchmove', handlePointerMove, { passive: false });
+            window.addEventListener('touchend', handlePointerUp);
+        }
+
+        const cartDrawer = document.getElementById('cartDrawer');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartBackdrop = document.getElementById('cartBackdrop');
+
+        if (openCartBtn && cartDrawer) {
+            openCartBtn.addEventListener('click', () => {
+                cartDrawer.classList.remove('hidden');
+                updateCartUI();
+            });
+        }
+        if (closeCartBtn && cartDrawer) {
+            closeCartBtn.addEventListener('click', () => cartDrawer.classList.add('hidden'));
+        }
+        if (cartBackdrop && cartDrawer) {
+            cartBackdrop.addEventListener('click', () => cartDrawer.classList.add('hidden'));
+        }
+
+        const checkoutModal = document.getElementById('checkoutModal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const closeCheckoutBtn = document.getElementById('closeCheckoutBtn');
+
+        if (checkoutBtn && checkoutModal && cartDrawer) {
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showToast('Please add at least one book to your cart.', 'warning');
+                    return;
+                }
+                cartDrawer.classList.add('hidden');
+                checkoutModal.classList.remove('hidden');
+            });
+        }
+        if (closeCheckoutBtn && checkoutModal) {
+            closeCheckoutBtn.addEventListener('click', () => checkoutModal.classList.add('hidden'));
+        }
+
+        const tabCardBtn = document.getElementById('tabCardBtn');
+        const tabPaypalBtn = document.getElementById('tabPaypalBtn');
+        const cardPaymentForm = document.getElementById('cardPaymentForm');
+        const paypalPaymentSection = document.getElementById('paypalPaymentSection');
+
+        if (tabCardBtn && tabPaypalBtn && cardPaymentForm && paypalPaymentSection) {
+            tabCardBtn.addEventListener('click', () => {
+                tabCardBtn.className = 'py-2 text-xs font-bold rounded-xl transition bg-amber-500 text-white shadow';
+                tabPaypalBtn.className = 'py-2 text-xs font-bold rounded-xl transition text-slate-300 hover:text-white';
+                cardPaymentForm.classList.remove('hidden');
+                paypalPaymentSection.classList.add('hidden');
+            });
+
+            tabPaypalBtn.addEventListener('click', () => {
+                tabPaypalBtn.className = 'py-2 text-xs font-bold rounded-xl transition bg-amber-500 text-white shadow';
+                tabCardBtn.className = 'py-2 text-xs font-bold rounded-xl transition text-slate-300 hover:text-white';
+                cardPaymentForm.classList.add('hidden');
+                paypalPaymentSection.classList.remove('hidden');
+            });
+        }
+
+        const payCardSubmitBtn = document.getElementById('payCardSubmitBtn');
+        if (payCardSubmitBtn && checkoutModal) {
+            payCardSubmitBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showToast('Processing secure card payment...', 'success');
+                setTimeout(() => {
+                    cart = [];
+                    updateCartUI();
+                    checkoutModal.classList.add('hidden');
+                    showToast('Payment successful! PDF download links sent.', 'success');
+                }, 1200);
+            });
+        }
+
+        const payPaypalBtn = document.getElementById('payPaypalBtn');
+        if (payPaypalBtn && checkoutModal) {
+            payPaypalBtn.addEventListener('click', () => {
+                showToast('Connecting to PayPal Business...', 'success');
+                setTimeout(() => {
+                    cart = [];
+                    updateCartUI();
+                    checkoutModal.classList.add('hidden');
+                    showToast('PayPal payment successful! Downloads ready.', 'success');
+                }, 1500);
+            });
+        }
+
+        const creatorModal = document.getElementById('creatorModal');
+        const openCreatorBtn = document.getElementById('openCreatorBtn');
+        const closeCreatorBtn = document.getElementById('closeCreatorBtn');
+
+        if (openCreatorBtn && creatorModal) {
+            openCreatorBtn.addEventListener('click', () => creatorModal.classList.remove('hidden'));
+        }
+        if (closeCreatorBtn && creatorModal) {
+            closeCreatorBtn.addEventListener('click', () => creatorModal.classList.add('hidden'));
+        }
+
+        const loginCreatorSubmitBtn = document.getElementById('loginCreatorSubmitBtn');
+        if (loginCreatorSubmitBtn) {
+            loginCreatorSubmitBtn.addEventListener('click', () => {
+                const passInput = document.getElementById('creatorPasswordInput');
+                const pass = passInput ? passInput.value : '';
+                if (pass === creatorPassword) {
+                    const loginView = document.getElementById('creatorLoginView');
+                    const dashView = document.getElementById('creatorDashboardView');
+                    if (loginView) loginView.classList.add('hidden');
+                    if (dashView) dashView.classList.remove('hidden');
+                    renderCreatorBooksList();
+                    showToast('Logged in to Creator Dashboard!', 'success');
+                } else {
+                    showToast('Incorrect creator password!', 'warning');
+                }
+            });
+        }
+
+        const logoutCreatorBtn = document.getElementById('logoutCreatorBtn');
+        if (logoutCreatorBtn) {
+            logoutCreatorBtn.addEventListener('click', () => {
+                const loginView = document.getElementById('creatorLoginView');
+                const dashView = document.getElementById('creatorDashboardView');
+                const passInput = document.getElementById('creatorPasswordInput');
+                if (dashView) dashView.classList.add('hidden');
+                if (loginView) loginView.classList.remove('hidden');
+                if (passInput) passInput.value = '';
+                showToast('Logged out.', 'warning');
+            });
+        }
+
+        const changePasswordBtn = document.getElementById('changePasswordBtn');
+        if (changePasswordBtn) {
+            changePasswordBtn.addEventListener('click', () => {
+                const currentInput = document.getElementById('currentPassInput');
+                const newInput = document.getElementById('newPassInput');
+                const curVal = currentInput ? currentInput.value : '';
+                const newVal = newInput ? newInput.value.trim() : '';
+
+                if (curVal !== creatorPassword) {
+                    showToast('Current password does not match.', 'warning');
+                    return;
+                }
+                if (!newVal) {
+                    showToast('Please enter a new password.', 'warning');
+                    return;
+                }
+
+                creatorPassword = newVal;
+                if (currentInput) currentInput.value = '';
+                if (newInput) newInput.value = '';
+                showToast('Creator password updated successfully!', 'success');
+            });
+        }
+
+        // Multi-file selection counter
+        const newBookFilesInput = document.getElementById('newBookFiles');
+        const selectedFilesCount = document.getElementById('selectedFilesCount');
+        if (newBookFilesInput && selectedFilesCount) {
+            newBookFilesInput.addEventListener('change', () => {
+                const count = newBookFilesInput.files.length;
+                if (count > 0) {
+                    selectedFilesCount.textContent = `${count} file(s) selected`;
+                } else {
+                    selectedFilesCount.textContent = 'No files selected';
+                }
+            });
+        }
+
+        const publishNewBookBtn = document.getElementById('publishNewBookBtn');
+        if (publishNewBookBtn) {
+            publishNewBookBtn.addEventListener('click', () => {
+                const titleInput = document.getElementById('newBookTitle');
+                const audienceSelect = document.getElementById('newBookAudience');
+                const themeSelect = document.getElementById('newBookTheme');
+                const descInput = document.getElementById('newBookDesc');
+                const filesInput = document.getElementById('newBookFiles');
+
+                const title = titleInput ? titleInput.value.trim() : '';
+                const audience = audienceSelect ? audienceSelect.value : 'kids';
+                const theme = themeSelect ? themeSelect.value : 'animals';
+                const desc = descInput ? descInput.value.trim() : '';
+
+                if (!title) {
+                    showToast('Please enter a book title.', 'warning');
+                    return;
+                }
+
+                const defaultCover = 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80';
+
+                if (filesInput && filesInput.files && filesInput.files.length > 0) {
+                    const files = Array.from(filesInput.files);
+                    let loadedCount = 0;
+                    let samplePages = [];
+
+                    files.forEach((file, index) => {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            samplePages.push(e.target.result);
+                            loadedCount++;
+                            if (loadedCount === files.length) {
+                                finalizePublish(title, audience, theme, desc, samplePages[0], samplePages);
+                            }
+                        };
+                        reader.onerror = function() {
+                            loadedCount++;
+                            samplePages.push(defaultCover);
+                            if (loadedCount === files.length) {
+                                finalizePublish(title, audience, theme, desc, samplePages[0], samplePages);
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                } else {
+                    finalizePublish(title, audience, theme, desc, defaultCover, [defaultCover, defaultCover]);
+                }
+            });
+        }
+
+        function finalizePublish(title, audience, theme, desc, coverImage, samplePages) {
+            const newBook = {
+                id: 'b' + Date.now(),
+                title: title,
+                audience: audience,
+                theme: theme,
+                price: audience === 'kids' ? 4.99 : 5.99,
+                pages: samplePages.length * 10,
+                image: coverImage,
+                description: desc || 'High resolution digital coloring pages.',
+                samplePages: samplePages
+            };
+
+            books.unshift(newBook);
+            renderBooks();
+            renderCreatorBooksList();
+
+            const creatorModal = document.getElementById('creatorModal');
+            if (creatorModal) creatorModal.classList.add('hidden');
+            
+            const titleInput = document.getElementById('newBookTitle');
+            const descInput = document.getElementById('newBookDesc');
+            const filesInput = document.getElementById('newBookFiles');
+            const selectedFilesCount = document.getElementById('selectedFilesCount');
+
+            if (titleInput) titleInput.value = '';
+            if (descInput) descInput.value = '';
+            if (filesInput) filesInput.value = '';
+            if (selectedFilesCount) selectedFilesCount.textContent = 'No files selected';
+
+            showToast(`Published "${title}" with ${samplePages.length} files to store!`, 'success');
+        }
+
+        window.onload = () => {
+            renderBooks();
+            initCanvas();
+        };
+    </script>
+</body>
+</html>
